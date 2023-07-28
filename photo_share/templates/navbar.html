@@ -1,6 +1,6 @@
 <nav class="navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-        <a href="#" class="navbar-brand">
+        <a href="{% url 'user:index'%}" class="navbar-brand">
             Site Logo
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expand="false" aria-label="Toggle Navigation">
@@ -10,7 +10,7 @@
             <ul class="navbar-nav">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'user:profile' request.user.slug %}" class="nav-link">
                             Profile
                         </a>
                     </li>
@@ -30,18 +30,18 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'user:logout' %}" class="nav-link">
                             Logout
                         </a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'user:login' %}" class="nav-link">
                             Login
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'user:register' %}" class="nav-link">
                             Register
                         </a>
                     </li>
