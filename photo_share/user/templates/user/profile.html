@@ -1,11 +1,27 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Profile {{ request.user }}
+    Profile {{ profile_user.username }}
 {% endblock title %}
 
 {% block content %}
     <h1>
-        {{ request.user.username }}
+        {{ profile_user.username }}
     </h1>
+   
+    {% for image in profile_user.photos.all %}
+        <div class="card mt-4 mb-4" style="width:18rem;">
+            <img src="{{ image.image.url }}" alt="{{ image.name }}" class="img-card-top">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ image.name }}
+                </h5>
+            </div>
+        </div>
+    {% empty %}
+        <p>
+            There is nothing to show here yet.
+        </p>
+    {% endfor %}
+    
 {% endblock content %}

@@ -1,15 +1,9 @@
 from django.contrib.auth.views import LoginView as Login, LogoutView as Logout
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from .models import User
 from .forms import RegistrationForm, LoginForm
-
-
-class IndexView(TemplateView):
-    """Index template placeholder"""
-    template_name = 'index.html'
 
 
 class RegisterView(CreateView):
@@ -26,7 +20,7 @@ class LoginView(Login):
     template_name = 'user/login.html'
 
     def get_success_url(self) -> str:
-        return reverse_lazy('user:profile', args=[self.request.slug])
+        return reverse_lazy('user:profile', args=[self.request.user.slug])
 
 
 class LogoutView(Logout):
@@ -37,3 +31,4 @@ class LogoutView(Logout):
 class ProfileView(DetailView):
     model = User
     template_name = 'user/profile.html'
+    context_object_name = 'profile_user'

@@ -1,6 +1,6 @@
 from django import forms
 from .models import Image
-from utils.forms.widgets import text_input, select_input, file_input
+from utils.forms.widgets import text_input, select_input, image_input
 
 
 class ImageUploadForm(forms.ModelForm):
@@ -16,6 +16,6 @@ class ImageUploadForm(forms.ModelForm):
 
         widgets = {
             'name': text_input,
-            'image': file_input,
+            'image': image_input,
             'status': select_input,
         }

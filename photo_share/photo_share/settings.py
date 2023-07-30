@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
+    'photos.apps.PhotosConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,7 @@ AUTH_USER_MODEL = 'user.User'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+LOGOUT_REDIRECT_URL = 'photos:index'
+LOGIN_REDIRECT_URL = 'user:login'

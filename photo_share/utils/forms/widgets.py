@@ -13,5 +13,5 @@ attrs = [
 text_input = forms.TextInput(attrs=attrs[0])
 email_input = forms.EmailInput(attrs=attrs[0])
 password_input = forms.PasswordInput(attrs=attrs[0])
-file_input = forms.ImageField(attrs=attrs[0])
 select_input = forms.Select(attrs=attrs[1])
+image_input = forms.FileInput(attrs=attrs[0])

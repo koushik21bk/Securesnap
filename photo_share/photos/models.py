@@ -10,10 +10,10 @@ class Image(models.Model):
         PUBLIC = 'public', 'Public'
         PRIVATE = 'private', 'Private'
 
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, unique=True)
     image = models.ImageField(upload_to='images/')
     status = models.CharField(
-        max_length=6, choices=Status.choices, default=Status.PUBLIC)
+        max_length=7, choices=Status.choices, default=Status.PUBLIC)
     upload_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='photos')
@@ -27,4 +27,4 @@ class Image(models.Model):
             models.Index(fields=['user'], name='user_idx')
         ]
 
-        ordering = '-upload_date'
+        ordering = ['-upload_date']

@@ -5,7 +5,17 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>
-        Index Page Placeholder
-    </h1>
+    {% for image in images %}
+        <div class="card mb-4 mt-4" style="width: 18rem;">
+            <img src="{{ image.image.url }}" alt="{{ image.name }}" class="img-card-top">
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    {{ image.name }}
+                </h5>
+                <p class="card-text">
+                    Uploaded by: <a href="{{ image.user.get_absolute_url }}" class="card-link"> {{ image.user.username }}</a>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock content %}

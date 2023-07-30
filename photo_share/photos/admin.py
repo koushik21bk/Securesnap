@@ -22,4 +22,4 @@ class ImageModelAdmin(admin.ModelAdmin):
         'user',
     ]
 
-    date_hierarchy = ['upload_date']
+    date_hierarchy = 'upload_date'
