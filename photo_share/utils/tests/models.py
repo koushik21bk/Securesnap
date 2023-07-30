@@ -7,7 +7,7 @@ from django.db.models import Model
 
 class TestModel:
     @classmethod
-    def get_verbose_name(self, model: Model, field: str) -> str:
+    def get_verbose_name(cls, model: Model, field: str) -> str:
         """
         Use this method to get a model fields
         verbose name
@@ -22,7 +22,7 @@ class TestModel:
         return model._meta.get_field(field).verbose_name
 
     @classmethod
-    def get_max_length(self, model: Model, field: str) -> int:
+    def get_max_length(cls, model: Model, field: str) -> int:
         """
         Use this method to get a model fields max length
 
@@ -34,3 +34,17 @@ class TestModel:
         :return: The maximum length a model field will accept
         """
         return model._meta.get_field(field).max_length
+
+    @classmethod
+    def get_field(cls, model: Model, field: str) -> str:
+        """
+        Use this method to get a model's field
+
+        :param model: The model to use
+        :type model: Django model
+        :param field: The field you want to get
+        :type field: str
+        :rtype: str
+        :return: The model field
+        """
+        return model._meta.get_field(field)
