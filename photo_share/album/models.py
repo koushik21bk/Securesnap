@@ -18,8 +18,8 @@ class Album(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['name'], name='name_idx'),
-            models.Index(fields=['user'], name='user_idx'),
+            models.Index(fields=['name'], name='album_name_idx'),
+            models.Index(fields=['user'], name='album_user_idx'),
         ]
 
         # The name and user must be unique together
@@ -27,3 +27,5 @@ class Album(models.Model):
             models.UniqueConstraint(
                 fields=['name', 'user'], name='unique_name_user'),
         ]
+
+        ordering = ['-upload_date']
