@@ -16,6 +16,6 @@ class AlbumCreationForm(forms.ModelForm):
 
         widgets = {
             'name': text_input,
-            'image': image_input,
+            'image': forms.FileField(attrs={'class': 'form-control', 'multiple': True}),
             'status': select_input,
         }
