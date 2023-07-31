@@ -1,6 +1,6 @@
 from django import forms
 from .models import Album
-from utils.forms.widgets import text_input, image_input, select_input
+from utils.forms.widgets import text_input, select_input
 
 
 class AlbumCreationForm(forms.ModelForm):
@@ -10,12 +10,10 @@ class AlbumCreationForm(forms.ModelForm):
 
         fields = [
             'name',
-            'image',
             'status',
         ]
 
         widgets = {
             'name': text_input,
-            'image': forms.FileField(attrs={'class': 'form-control', 'multiple': True}),
             'status': select_input,
         }
