@@ -7,7 +7,8 @@ app_name = 'photos'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('photos/upload/', views.ImageUploadView.as_view(), name='upload'),
+    path('photos/<slug:slug>/upload/',
+         views.ImageUploadView.as_view(), name='upload'),
 ]
 
 if settings.DEBUG:

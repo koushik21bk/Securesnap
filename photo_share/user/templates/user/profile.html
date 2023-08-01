@@ -8,6 +8,10 @@
     <h1>
         {{ profile_user.username }}
     </h1>
+
+    <a href="{% url 'album:albums' profile_user.slug %}" class="btn btn-primary">
+        Albums
+    </a>
    
     {% if request.user.username == profile_user.username %}
     {% comment "" %}

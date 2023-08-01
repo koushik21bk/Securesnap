@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ album.name }} Album
+{% endblock title %}
+
+{% block content %}
+    {% for image in images %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ image.image.url }}" alt="{{ image.name }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ image.name }}
+                </h5>
+            </div>
+        </div>
+    {% empty %}
+        <p>
+            There are no images in this album.
+        </p>
+    {% endfor %}
+{% endblock content %}

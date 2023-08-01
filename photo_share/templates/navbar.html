@@ -15,17 +15,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'photos:upload' %}" class="nav-link">
+                        <a href="{% url 'photos:upload' request.user.slug %}" class="nav-link">
                             Upload Image
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'album:create-album' %}" class="nav-link">
+                        <a href="{% url 'album:create-album' request.user.slug %}" class="nav-link">
                             Create Album
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'album:albums' request.user.slug %}" class="nav-link">
                             Albums
                         </a>
                     </li>

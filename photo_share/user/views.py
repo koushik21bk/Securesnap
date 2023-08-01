@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .models import User
 from .forms import RegistrationForm, LoginForm
 from photos.models import Image
+from album.models import Album
 
 
 class RegisterView(CreateView):

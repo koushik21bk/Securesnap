@@ -11,7 +11,8 @@ class Album(models.Model):
         PRIVATE = 'private', 'Private'
 
     name = models.CharField(max_length=50, unique=True)
-    status = models.CharField(max_length=7, default=Status.PUBLIC)
+    status = models.CharField(
+        max_length=7, choices=Status.choices, default=Status.PUBLIC)
     creation_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
