@@ -14,7 +14,8 @@ class Album(models.Model):
     status = models.CharField(
         max_length=7, choices=Status.choices, default=Status.PUBLIC)
     creation_date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='albums')
 
     def __str__(self) -> str:
         return self.name
@@ -35,23 +36,19 @@ class Album(models.Model):
 
 
 class AlbumImage(models.Model):
-    name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
     upload_date = models.DateTimeField(auto_now_add=True)
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    album = models.ForeignKey(
+        Album, on_delete=models.CASCADE, related_name='album_images')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='album_image_user')
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.image)
 
     class Meta:
         indexes = [
-            models.Index(fields=['name'], name='album_image_name'),
-        ]
-
-        constraints = [
-            models.UniqueConstraint(
-                fields=['name', 'user'], name='album_image_unique_name_user')
+            models.Index(fields=['image'], name='album_image_idx'),
         ]
 
         ordering = ['-upload_date']

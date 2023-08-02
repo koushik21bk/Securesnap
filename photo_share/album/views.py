@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
-from .forms import AlbumCreationForm
+from .forms import AlbumCreationForm, AlbumImageUploadForm
 from .models import Album, AlbumImage
 from user.models import User
 
@@ -17,19 +17,6 @@ class AlbumCreationView(CreateView):
     def get_success_url(self) -> str:
         return reverse_lazy('user:profile', args=[self.request.user.slug])
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        images = self.request.FILES.getlist('images')
-        for image in images:
-            photo = AlbumImage.objects.create(
-                name=image.name,
-                image=image,
-                album=self.get_object,
-                user=self.request.user
-            )
-            photo.save()
-        return super().form_valid(form)
-
 
 class AlbumsView(ListView):
     """Use this view to list all albums of the profile user"""
@@ -38,11 +25,15 @@ class AlbumsView(ListView):
     context_object_name = 'albums'
 
     def get_queryset(self):
+        # Get the user's slug field of the profile that is being viewed
         user = self.kwargs['slug']
+        # Return all albums that belong to the profile user
+        # that is being viewed
         return Album.objects.filter(user__username=user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # Get the user object from the `slug` field in the url
         context["profile_user"] = User.objects.get(
             username=self.kwargs['slug'])
         return context
@@ -57,4 +48,31 @@ class AlbumView(DetailView):
         context = super().get_context_data(**kwargs)
         context["images"] = AlbumImage.objects.filter(
             album__id=self.kwargs['pk'])
+        context['profile'] = User.objects.get(slug=self.kwargs['slug'])
         return context
+
+
+class AlbumImageUploadView(CreateView):
+    model = AlbumImage
+    template_name = 'album/upload-image.html'
+    # form_class = AlbumImageUploadForm
+
+    fields = [
+        'image',
+    ]
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('album:album', args=[self.request.user.slug, self.kwargs['pk']])
+
+    def form_valid(self, form):
+        images = self.request.FILES.getlist('image')
+        for image in images:
+            AlbumImage.objects.create(
+                image=image,
+                album=Album.objects.get(pk=self.kwargs['pk']),
+                user=self.request.user
+            )
+            form.instance.user = self.request.user
+            form.instance.album = Album.objects.get(pk=self.kwargs['pk'])
+
+        return super().form_valid(form)

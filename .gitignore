@@ -160,5 +160,4 @@ cython_debug/
 #.idea/
 
 project-overview.md
-
-/photo_share/media/
+media/

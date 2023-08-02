@@ -22,7 +22,6 @@ class AlbumModelAdmin(admin.ModelAdmin):
 @admin.register(AlbumImage)
 class AlbumImageModelAdmin(admin.ModelAdmin):
     list_display = [
-        'name',
         'image',
         'upload_date',
         'album',
@@ -30,7 +29,6 @@ class AlbumImageModelAdmin(admin.ModelAdmin):
     ]
 
     search_fields = [
-        'name',
         'user',
     ]
 

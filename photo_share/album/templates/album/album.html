@@ -5,18 +5,21 @@
 {% endblock title %}
 
 {% block content %}
+
+    {% if request.user.username == profile.username %}
+        <a href="{% url 'album:upload-image' request.user.slug album.pk %}" class="btn btn-primary">
+            Upload Album Images
+        </a>
+    {% endif %}
+
     {% for image in images %}
-        <div class="card" style="width: 18rem;">
-            <img src="{{ image.image.url }}" alt="{{ image.name }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">
-                    {{ image.name }}
-                </h5>
-            </div>
+        <div class="card mb-4 mt-2" style="width: 18rem;">
+            <img src="{{ image.image.url }}" alt="" class="card-img-top">
         </div>
     {% empty %}
         <p>
             There are no images in this album.
         </p>
     {% endfor %}
+     
 {% endblock content %}

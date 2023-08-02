@@ -11,6 +11,8 @@ urlpatterns = [
     path('photos/<slug:slug>/albums/', views.AlbumsView.as_view(), name='albums'),
     path('photos/<slug:slug>/album/<int:pk>/',
          views.AlbumView.as_view(), name='album'),
+    path('photos/<slug:slug>/album/<int:pk>/upload-image/',
+         views.AlbumImageUploadView.as_view(), name='upload-image'),
 ]
 
 if settings.DEBUG:

@@ -25,11 +25,9 @@ class AlbumImageUploadForm(forms.ModelForm):
         model = AlbumImage
 
         fields = [
-            'name',
             'image',
         ]
 
         widgets = {
-            'name': text_input,
             'image': image_input,
         }
