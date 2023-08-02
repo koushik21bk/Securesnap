@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from user.models import User
 
 
@@ -20,6 +21,9 @@ class Image(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('photos:image', kwargs={'slug': self.user.slug, 'pk': self.pk})
 
     class Meta:
         indexes = [

@@ -65,6 +65,8 @@ class AlbumImageUploadView(CreateView):
         return reverse_lazy('album:album', args=[self.request.user.slug, self.kwargs['pk']])
 
     def form_valid(self, form):
+        # TODO Fix issue where the upload saves
+        # the last image selected twice
         images = self.request.FILES.getlist('image')
         for image in images:
             AlbumImage.objects.create(

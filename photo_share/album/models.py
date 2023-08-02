@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import User
+from django.urls import reverse
 
 
 class Album(models.Model):
@@ -19,6 +20,9 @@ class Album(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('album:album', kwargs={'slug': self.user.slug, 'pk': self.pk})
 
     class Meta:
         indexes = [

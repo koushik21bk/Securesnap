@@ -9,6 +9,10 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('photos/<slug:slug>/upload/',
          views.ImageUploadView.as_view(), name='upload'),
+    path('photos/<slug:slug>/image/<int:pk>/',
+         views.ImageView.as_view(), name='image'),
+    path('photos/<slug:slug>/image/<int:pk>/delete/',
+         views.DeleteImageView.as_view(), name='delete')
 ]
 
 if settings.DEBUG:

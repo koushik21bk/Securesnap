@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ image.name }}
+{% endblock title %}
+
+{% block content %}
+
+    <ul class="nav justify-content-center mb-5">
+        <li class="nav-item">
+            <a href="{% url 'photos:delete' image.user.username image.pk %}" class="btn btn-primary">
+                Delete Image
+            </a>
+        </li>
+    </ul>
+
+    <img src="{{ image.image.url }}" alt="{{ image.name }}" class="rounded-3 border-2 border-secondary mx-auto d-block img-thumbnail">
+{% endblock content %}

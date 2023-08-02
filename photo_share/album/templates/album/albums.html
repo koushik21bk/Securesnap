@@ -14,7 +14,7 @@
                 <h5 class="card-title">
                     {{ album.name }}
                 </h5>
-                <a href="{% url 'album:album' profile_user.slug album.id %}" class="btn btn-primary">
+                <a href="{{ album.get_absolute_url }}" class="btn btn-primary">
                     {{ album.name }}
                 </a>
             </div>
