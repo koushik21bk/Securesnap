@@ -14,9 +14,14 @@
                 <h5 class="card-title">
                     {{ album.name }}
                 </h5>
-                <a href="{{ album.get_absolute_url }}" class="btn btn-primary">
+                <a href="{{ album.get_absolute_url }}" class="card-link">
                     {{ album.name }}
                 </a>
+                {% if request.user.username == album.user.username %}
+                    <a href="{% url 'album:delete-album' request.user.slug album.pk %}" class="card-link">
+                        Delete Album
+                    </a>
+                {% endif %}
             </div>
         </div>
     {% empty %}

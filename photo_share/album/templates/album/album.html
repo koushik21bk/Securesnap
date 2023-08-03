@@ -13,8 +13,15 @@
     {% endif %}
 
     {% for image in images %}
-        <div class="card mb-4 mt-2" style="width: 18rem;">
+        <div class="card mb-4 mt-2 text-center" style="width: 18rem;">
             <img src="{{ image.image.url }}" alt="" class="card-img-top">
+            <div class="card-body">
+                {% if request.user.username == profile.username %}
+                <a href="{% url 'album:delete-album-image' profile.slug album.pk image.pk %}" class="card-link">
+                    Delete
+                </a>
+            {% endif %}
+            </div>
         </div>
     {% empty %}
         <p>

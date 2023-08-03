@@ -1,5 +1,4 @@
-from typing import Any, Dict
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
@@ -9,7 +8,7 @@ from user.models import User
 
 
 class AlbumCreationView(CreateView):
-    """Use this view to create new photo albums"""
+    """Use this view to create new albums"""
     model = Album
     template_name = 'album/create-album.html'
     form_class = AlbumCreationForm
@@ -40,6 +39,7 @@ class AlbumsView(ListView):
 
 
 class AlbumView(DetailView):
+    """Use this view to display a album"""
     model = Album
     template_name = 'album/album.html'
     context_object_name = 'album'
@@ -53,6 +53,7 @@ class AlbumView(DetailView):
 
 
 class AlbumImageUploadView(CreateView):
+    """Use this view to upload album images"""
     model = AlbumImage
     template_name = 'album/upload-image.html'
     # form_class = AlbumImageUploadForm
@@ -78,3 +79,22 @@ class AlbumImageUploadView(CreateView):
             form.instance.album = Album.objects.get(pk=self.kwargs['pk'])
 
         return super().form_valid(form)
+
+
+class DeleteAlbumView(DeleteView):
+    """Use this view to delete an album"""
+    model = Album
+    template_name = 'album/delete-album.html'
+    context_object_name = 'album'
+
+    def get_success_url(self):
+        return reverse_lazy('user:profile', args=[self.request.user.slug])
+
+
+class DeleteAlbumImageView(DeleteView):
+    """Use this view to delete a image from a album"""
+    model = AlbumImage
+    template_name = 'album/delete-album-image.html'
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('album:album', args=[self.request.user.slug, self.kwargs['album_pk']])
