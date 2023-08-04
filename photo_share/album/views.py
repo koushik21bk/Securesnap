@@ -105,6 +105,12 @@ class DeleteAlbumImageView(DeleteView):
 
     model = AlbumImage
     template_name = "album/delete-album-image.html"
+    context_object_name = "image"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["album"] = Album.objects.get(id=self.kwargs["album_pk"])
+        return context
 
     def get_success_url(self) -> str:
         return reverse_lazy(

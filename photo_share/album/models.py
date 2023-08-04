@@ -52,6 +52,16 @@ class AlbumImage(models.Model):
     def __str__(self) -> str:
         return str(self.image)
 
+    def get_image(self):
+        """
+        This method removes the the `images` directory from the image.
+
+        Ex: If the image is `images/test.png` this method will return
+        `test.png`.
+        """
+        image = str(self.image).split("/")[1]
+        return image
+
     class Meta:
         indexes = [
             models.Index(fields=["image"], name="album_image_idx"),
