@@ -14,6 +14,9 @@ class AlbumCreationView(CreateView):
     template_name = "album/create-album.html"
     form_class = AlbumCreationForm
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+
     def get_success_url(self) -> str:
         return reverse_lazy("user:profile", args=[self.request.user.slug])
 
