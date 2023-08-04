@@ -6,43 +6,63 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('album', '0001_initial'),
+        ("album", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='album',
-            options={'ordering': ['-creation_date']},
+            name="album",
+            options={"ordering": ["-creation_date"]},
         ),
         migrations.RenameField(
-            model_name='album',
-            old_name='upload_date',
-            new_name='creation_date',
+            model_name="album",
+            old_name="upload_date",
+            new_name="creation_date",
         ),
         migrations.RemoveField(
-            model_name='album',
-            name='image',
+            model_name="album",
+            name="image",
         ),
         migrations.CreateModel(
-            name='AlbumImage',
+            name="AlbumImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('image', models.ImageField(upload_to='images/')),
-                ('upload_date', models.DateTimeField(auto_now_add=True)),
-                ('album', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='album.album')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("image", models.ImageField(upload_to="images/")),
+                ("upload_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "album",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="album.album"
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-upload_date'],
-                'indexes': [models.Index(fields=['name'], name='album_image_name')],
+                "ordering": ["-upload_date"],
+                "indexes": [models.Index(fields=["name"], name="album_image_name")],
             },
         ),
         migrations.AddConstraint(
-            model_name='albumimage',
-            constraint=models.UniqueConstraint(fields=('name', 'user'), name='album_image_unique_name_user'),
+            model_name="albumimage",
+            constraint=models.UniqueConstraint(
+                fields=("name", "user"), name="album_image_unique_name_user"
+            ),
         ),
     ]

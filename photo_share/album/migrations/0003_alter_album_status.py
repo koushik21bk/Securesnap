@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('album', '0002_alter_album_options_and_more'),
+        ("album", "0002_alter_album_options_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='album',
-            name='status',
-            field=models.CharField(choices=[('public', 'Public'), ('private', 'Private')], default='public', max_length=7),
+            model_name="album",
+            name="status",
+            field=models.CharField(
+                choices=[("public", "Public"), ("private", "Private")],
+                default="public",
+                max_length=7,
+            ),
         ),
     ]

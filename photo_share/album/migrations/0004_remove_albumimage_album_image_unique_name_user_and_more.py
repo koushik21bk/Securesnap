@@ -4,26 +4,25 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('album', '0003_alter_album_status'),
+        ("album", "0003_alter_album_status"),
     ]
 
     operations = [
         migrations.RemoveConstraint(
-            model_name='albumimage',
-            name='album_image_unique_name_user',
+            model_name="albumimage",
+            name="album_image_unique_name_user",
         ),
         migrations.RemoveIndex(
-            model_name='albumimage',
-            name='album_image_name',
+            model_name="albumimage",
+            name="album_image_name",
         ),
         migrations.RemoveField(
-            model_name='albumimage',
-            name='name',
+            model_name="albumimage",
+            name="name",
         ),
         migrations.AddIndex(
-            model_name='albumimage',
-            index=models.Index(fields=['image'], name='album_image_idx'),
+            model_name="albumimage",
+            index=models.Index(fields=["image"], name="album_image_idx"),
         ),
     ]

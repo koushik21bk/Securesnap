@@ -5,31 +5,31 @@ from .models import Album, AlbumImage
 @admin.register(Album)
 class AlbumModelAdmin(admin.ModelAdmin):
     list_display = [
-        'name',
-        'status',
-        'creation_date',
-        'user',
+        "name",
+        "status",
+        "creation_date",
+        "user",
     ]
 
     search_fields = [
-        'name',
-        'user',
+        "name",
+        "user",
     ]
 
-    date_hierarchy = 'creation_date'
+    date_hierarchy = "creation_date"
 
 
 @admin.register(AlbumImage)
 class AlbumImageModelAdmin(admin.ModelAdmin):
     list_display = [
-        'image',
-        'upload_date',
-        'album',
-        'user',
+        "image",
+        "upload_date",
+        "album",
+        "user",
     ]
 
     search_fields = [
-        'user',
+        "user",
     ]
 
-    date_hierarchy = 'upload_date'
+    date_hierarchy = "upload_date"

@@ -8,7 +8,7 @@ from utils.forms.widgets import text_input, email_input, password_input
 class RegistrationForm(forms.ModelForm):
     def clean_password(self) -> str:
         """Hash the password on user creation"""
-        password = self.cleaned_data['password']
+        password = self.cleaned_data["password"]
         password = make_password(password)
 
         return password
@@ -17,19 +17,19 @@ class RegistrationForm(forms.ModelForm):
         model = User
 
         fields = [
-            'first_name',
-            'last_name',
-            'username',
-            'email',
-            'password',
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "password",
         ]
 
         widgets = {
-            'first_name': text_input,
-            'last_name': text_input,
-            'username': text_input,
-            'email': email_input,
-            'password': password_input
+            "first_name": text_input,
+            "last_name": text_input,
+            "username": text_input,
+            "email": email_input,
+            "password": password_input,
         }
 
 

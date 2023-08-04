@@ -8,27 +8,27 @@ class Image(models.Model):
 
     # Status of the image
     class Status(models.TextChoices):
-        PUBLIC = 'public', 'Public'
-        PRIVATE = 'private', 'Private'
+        PUBLIC = "public", "Public"
+        PRIVATE = "private", "Private"
 
     name = models.CharField(max_length=150, unique=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to="images/")
     status = models.CharField(
-        max_length=7, choices=Status.choices, default=Status.PUBLIC)
+        max_length=7, choices=Status.choices, default=Status.PUBLIC
+    )
     upload_date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='photos')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="photos")
 
     def __str__(self) -> str:
         return self.name
 
     def get_absolute_url(self):
-        return reverse('photos:image', kwargs={'slug': self.user.slug, 'pk': self.pk})
+        return reverse("photos:image", kwargs={"slug": self.user.slug, "pk": self.pk})
 
     class Meta:
         indexes = [
-            models.Index(fields=['name'], name='name_idx'),
-            models.Index(fields=['user'], name='user_idx')
+            models.Index(fields=["name"], name="name_idx"),
+            models.Index(fields=["user"], name="user_idx"),
         ]
 
-        ordering = ['-upload_date']
+        ordering = ["-upload_date"]

@@ -5,9 +5,9 @@ from django import forms
 
 # CSS classes for bootstrap input's
 attrs = [
-    {'class': 'form-control'},
-    {'class': 'form-select'},
-    {'class': 'form-check-input'},
+    {"class": "form-control"},
+    {"class": "form-select"},
+    {"class": "form-check-input"},
 ]
 
 text_input = forms.TextInput(attrs=attrs[0])

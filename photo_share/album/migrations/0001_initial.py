@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,22 +14,41 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Album',
+            name="Album",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
-                ('image', models.ImageField(upload_to='images/')),
-                ('status', models.CharField(default='public', max_length=7)),
-                ('upload_date', models.DateTimeField(auto_now_add=True)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
+                ("image", models.ImageField(upload_to="images/")),
+                ("status", models.CharField(default="public", max_length=7)),
+                ("upload_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-upload_date'],
-                'indexes': [models.Index(fields=['name'], name='album_name_idx'), models.Index(fields=['user'], name='album_user_idx')],
+                "ordering": ["-upload_date"],
+                "indexes": [
+                    models.Index(fields=["name"], name="album_name_idx"),
+                    models.Index(fields=["user"], name="album_user_idx"),
+                ],
             },
         ),
         migrations.AddConstraint(
-            model_name='album',
-            constraint=models.UniqueConstraint(fields=('name', 'user'), name='unique_name_user'),
+            model_name="album",
+            constraint=models.UniqueConstraint(
+                fields=("name", "user"), name="unique_name_user"
+            ),
         ),
     ]

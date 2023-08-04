@@ -6,13 +6,14 @@ from django.urls import reverse
 
 class User(AbstractUser):
     """This model holds basic information for users of the application"""
+
     slug = models.SlugField()
 
     def __str__(self) -> str:
         return self.username
 
     def get_absolute_url(self):
-        return reverse('user:profile', kwargs={'slug': self.slug})
+        return reverse("user:profile", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         """Used to auto fill the slug field with the username"""
@@ -22,6 +23,6 @@ class User(AbstractUser):
     class Meta:
         # Indexes for query optimization
         indexes = [
-            models.Index(fields=['username'], name='username_idx'),
-            models.Index(fields=['email'], name='email_idx'),
+            models.Index(fields=["username"], name="username_idx"),
+            models.Index(fields=["email"], name="email_idx"),
         ]
