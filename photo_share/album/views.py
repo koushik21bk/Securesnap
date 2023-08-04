@@ -2,7 +2,7 @@ from django.views.generic.edit import CreateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
-from .forms import AlbumCreationForm, AlbumImageUploadForm
+from .forms import AlbumCreationForm
 from .models import Album, AlbumImage
 from user.models import User
 
@@ -16,6 +16,7 @@ class AlbumCreationView(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        return super().form_valid(form)
 
     def get_success_url(self) -> str:
         return reverse_lazy("user:profile", args=[self.request.user.slug])
