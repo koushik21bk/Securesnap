@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "photoshare"
+version = "0.1.0"
+description = "A web application that allows user's to upload and share images."
+authors = ["Manuel De La Rosa <manueldelarosa9722@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = ">=4.2.4,<4.3.0"
+pillow = ">=10.0.0,<10.1.0"
+djangorestframework = ">=3.14.0,<3.15.0"
+pytest = ">=7.4.0,<7.5.0"
+pytest-django = ">=4.5.2,<4.6.0"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "photo_share.settings"
+python_files = "test_*.py"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
