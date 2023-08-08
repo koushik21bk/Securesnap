@@ -32,3 +32,13 @@ class Image(models.Model):
         ]
 
         ordering = ["-upload_date"]
+
+
+class ImageLikes(models.Model):
+    """This model stores information about likes for a image object."""
+
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="likes")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="image_likes")
+
+    def __str__(self) -> str:
+        return self.image.name

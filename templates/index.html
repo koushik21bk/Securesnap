@@ -15,6 +15,9 @@
                 <p class="card-text">
                     Uploaded by: <a href="{{ image.user.get_absolute_url }}" class="card-link"> {{ image.user.username }}</a>
                 </p>
+                <p class"card-text">
+                    Likes: {{ image.likes.count }}
+                </p>
             </div>
         </div>
     {% endfor %}

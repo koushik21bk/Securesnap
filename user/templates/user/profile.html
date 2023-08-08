@@ -28,6 +28,9 @@
                     <a href="{{ image.get_absolute_url }}" class="card-link">
                         {{ image.name }}
                     </a>
+                    <p class="card-text">
+                        Likes: {{ image.likes.count }}
+                    </p>
                 </div>
             </div>
         {% endfor %}
@@ -43,6 +46,9 @@
                     <h5 class="card-title">
                         {{ image.name }}
                     </h5>
+                    <p class="card-text">
+                        Likes: {{ image.likes.count }}
+                    </p>
                 </div>
             </div>
         {% endfor %}
