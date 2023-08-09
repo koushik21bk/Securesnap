@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Image
+from .models import Image, ImageLikes
 
 
 @admin.register(Image)
@@ -23,3 +23,11 @@ class ImageModelAdmin(admin.ModelAdmin):
     ]
 
     date_hierarchy = "upload_date"
+
+
+@admin.register(ImageLikes)
+class ImageLikesModelAdmin(admin.ModelAdmin):
+    list_display = [
+        "image",
+        "user",
+    ]
