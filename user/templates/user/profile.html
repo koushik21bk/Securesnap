@@ -28,8 +28,13 @@
                     <a href="{{ image.get_absolute_url }}" class="card-link">
                         {{ image.name }}
                     </a>
-                    <p class="card-text">
+                    {% comment %} <p class="card-text">
                         Likes: {{ image.likes.count }}
+                    </p> {% endcomment %}
+                    <p class="card-text">
+                        <a href="{{ image.image.url }}" download="{{ image.title|default:'downloaded_image' }}.jpg" class="btn btn-primary" style="margin-left: 10px;">
+                            Download Image
+                        </a>
                     </p>
                 </div>
             </div>

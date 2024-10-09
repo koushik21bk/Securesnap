@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
         <a href="{% url 'photos:index'%}" class="navbar-brand">
-            Site Logo
+            SecureSnap
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expand="false" aria-label="Toggle Navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,16 +19,17 @@
                             Upload Image
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item">   
                         <a href="{% url 'album:create-album' request.user.slug %}" class="nav-link">
                             Create Album
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'album:albums' request.user.slug %}" class="nav-link">
-                            Albums
+                        <a href="{% url 'new-uploads' %}" class="nav-link">
+                            Scan
                         </a>
                     </li>
+                    
                     <li class="nav-item">
                         <a href="{% url 'user:logout' %}" class="nav-link">
                             Logout
